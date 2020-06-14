@@ -90,14 +90,13 @@ hr {
   background: rgba(0, 0, 0, 0.7);
 }
 
-main {
-  margin-top: -350px;
-}
 .userCard {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
   background: #fff;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
 }
 .userCard .welcome {
   position: relative;
@@ -169,6 +168,140 @@ main {
   height: 30px;
   fill: white;
   vertical-align: top;
+}
+
+body > main {
+  margin-top: -350px;
+}
+body > main .downloadResume-wrapper {
+  text-align: center;
+}
+body > main .downloadResume {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 16px;
+  padding: 21px 55px;
+  border: 1px solid #cdcfd1;
+  background: #efefef;
+  border-radius: 3px;
+  color: #3d4451;
+  margin: 32px 0;
+  transition: box-shadow 0.3s;
+}
+body > main .downloadResume:hover {
+  box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.5);
+}
+body > main .self-introduction {
+  text-align: center;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section.skills,
+section.portfolio {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+section.skills > h2,
+section.portfolio > h2 {
+  text-align: center;
+  color: #3d4451;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+section.skills h3 {
+  font-size: 14px;
+  line-height: 1.1;
+  padding-right: 48px;
+  font-weight: normal;
+}
+section.skills > ol {
+  background: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+  padding: 46px 50px 15px;
+  margin-top: 35px;
+}
+section.skills > ol > li {
+  float: left;
+  width: 48%;
+  box-sizing: border-box;
+}
+section.skills > ol > li:nth-child(even) {
+  float: right;
+}
+section.skills .progressBar {
+  height: 5px;
+  background: #fae1e1;
+  border-radius: 3px;
+  margin: 5px 0 40px;
+}
+section.skills .progressBar > .progress {
+  height: 100%;
+  background: #e6686a;
+  width: 70%;
+  border-radius: 3px;
+}
+
+section.portfolio {
+  text-align: center;
+  margin-bottom: 100px;
+}
+section.portfolio > nav > ol {
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+}
+section.portfolio > nav > ol > li {
+  float: left;
+  margin-left: 40px;
+  cursor: pointer;
+}
+section.portfolio > nav > ol > li:first-child {
+  margin-left: 0;
+}
+section.portfolio > nav {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 32px;
+}
+section.portfolio > nav .bar {
+  background: white;
+  height: 5px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  border-radius: 2px;
+}
+section.portfolio > nav .bar-inner {
+  height: 100%;
+  background: #e6686a;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+section.portfolio > nav .bar.state-1 .bar-inner {
+  width: 20%;
+  margin-left: 0;
+}
+section.portfolio > nav .bar.state-2 .bar-inner {
+  width: 20%;
+  margin-left: 80px;
+}
+section.portfolio > nav .bar.state-3 .bar-inner {
+  width: 20%;
+  margin-left: 162px;
+}
+
+section.portfolio .works {
+  position: relative;
+}
+section.portfolio .works > .big,
+section.portfolio .works > .small {
+  position: absolute;
 }
 
 
