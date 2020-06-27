@@ -134,8 +134,12 @@ setTimeout(function () {
   siteWelcome.classList.remove("active");
 }, 3000);
 
-window.scrollTo = function () {
-  console.log(window.scrollY);
+window.onscroll = function (xxx) {
+  if (window.scrollY > 0) {
+    topNavBar.classList.add("sticky");
+  } else {
+    topNavBar.classList.remove("sticky");
+  }
 };
 },{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

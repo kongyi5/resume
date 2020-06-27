@@ -32,6 +32,15 @@ hr {
   top: 0;
   left: 0;
   width: 100%;
+  transition: all 1s;
+  color: #b7b7b7;
+}
+.topNavBar.sticky {
+  background: white;
+  color: #3d4451;
+  padding: 10px 0;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .topNavBar-inner {
   padding: 0 16px;
@@ -54,7 +63,7 @@ hr {
 }
 .topNavBar nav {
   float: right;
-  padding-top: 6px;
+  padding-top: 5px;
 }
 .topNavBar nav > ul {
   list-style: none;
@@ -68,7 +77,7 @@ hr {
 }
 .topNavBar nav > ul > li > a {
   font-size: 12px;
-  color: #b7b7b7;
+  color: inherit;
   font-weight: bold;
   padding-top: 5px;
   padding-bottom: 5px;

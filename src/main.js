@@ -12,6 +12,10 @@ setTimeout(() => {
   siteWelcome.classList.remove("active");
 }, 3000);
 
-window.scrollTo = () => {
-  console.log(window.scrollY);
+window.onscroll = (xxx) => {
+  if (window.scrollY > 0) {
+    topNavBar.classList.add("sticky");
+  } else {
+    topNavBar.classList.remove("sticky");
+  }
 };
