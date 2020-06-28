@@ -19,3 +19,13 @@ window.onscroll = (xxx) => {
     topNavBar.classList.remove("sticky");
   }
 };
+
+let liTags = document.querySelectorAll("nav.menu > ul >li");
+for (let i = 0; i < liTags.length; i++) {
+  liTags[i].onmouseenter = (x) => {
+    x.currentTarget.classList.add("active");
+  };
+  liTags[i].onmouseleave = (x) => {
+    x.currentTarget.classList.remove("active");
+  };
+}

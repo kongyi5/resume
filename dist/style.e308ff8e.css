@@ -74,6 +74,7 @@ hr {
   margin-left: 17px;
   margin-right: 17px;
   float: left;
+  position: relative;
 }
 .topNavBar nav > ul > li > a {
   font-size: 12px;
@@ -84,11 +85,53 @@ hr {
   border-top: 3px solid transparent;
   border-bottom: 3px solid transparent;
   display: block;
+  position: relative;
 }
-.topNavBar nav > ul > li > a:hover {
-  border-bottom: 3px solid #e06567;
+.topNavBar nav > ul > li.active > a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 3px;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #e06567;
+  animation: menuSlide 0.3s;
+}
+@keyframes menuSlide {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
+.topNavBar .sub-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  color: #3d4451;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.topNavBar li.active > .sub-menu {
+  display: block;
+  animation: subMenuSlide 0.3s;
+}
+@keyframes subMenuSlide {
+  0% {
+    margin-right: 100%;
+  }
+  100% {
+    margin-right: 0;
+  }
+}
+.topNavBar .sub-menu > li {
+  white-space: nowrap;
+  padding: 5px 10px;
+}
 .banner {
   height: 515px;
   background: url(/rs-cover.7f93a6a4.jpg) center center no-repeat;
