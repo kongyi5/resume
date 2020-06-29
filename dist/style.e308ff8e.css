@@ -116,6 +116,9 @@ hr {
   color: #3d4451;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+.topNavBar .sub-menu:hover {
+  cursor: pointer;
+}
 .topNavBar li.active > .sub-menu {
   display: block;
   animation: subMenuSlide 0.3s;
