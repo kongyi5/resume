@@ -156,6 +156,13 @@ for (var i = 0; i < liTags.length; i++) {
 
 var aTags = document.querySelectorAll("nav.menu > ul> li>a");
 
+function animate(time) {
+  requestAnimationFrame(animate);
+  TWEEN.update(time);
+}
+
+requestAnimationFrame(animate);
+
 for (var _i = 0; _i < aTags.length; _i++) {
   aTags[_i].onclick = function (x) {
     x.preventDefault(); // 阻止默认动作
@@ -163,34 +170,27 @@ for (var _i = 0; _i < aTags.length; _i++) {
     var a = x.currentTarget;
     var href = a.getAttribute("href"); // '#siteAbout'
 
+    var element = document.querySelector(href);
+    var top = element.offsetTop;
+
     if (href === "#") {} else {
-      var element = document.querySelector(href);
-      var top = element.offsetTop;
+      var currentTop = window.scrollY;
+      var targetTop = top - 80;
+      var s = targetTop - currentTop;
+      var t = Math.abs(s / 100 * 300);
 
-      if (href === "#") {} else {
-        var n = 20; // 一共动多少次
-
-        var t = 500 / n; // 多少时间动一次
-
-        var currentTop = window.scrollY;
-        var targetTop = top - 80;
-        var S = targetTop - currentTop;
-        var s = S / n;
-        var _i2 = 0; // console.log(targetTop);
-        // console.log(currentTop);
-        // console.log(n);
-        // console.log(s);
-
-        var id = setInterval(function () {
-          if (_i2 === n) {
-            window.clearInterval(id);
-            return;
-          }
-
-          _i2 = _i2 + 1;
-          window.scrollTo(0, currentTop + s * _i2);
-        }, t);
+      if (t > 500) {
+        t = 500;
       }
+
+      var coords = {
+        y: currentTop
+      };
+      var tween = new TWEEN.Tween(coords).to({
+        y: targetTop
+      }, t).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(function () {
+        window.scrollTo(0, coords.y);
+      }).start();
     }
   };
 }
