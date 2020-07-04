@@ -26,6 +26,9 @@ hr {
   clear: both;
 }
 
+[data-x].active {
+  outline: 10px solid red;
+}
 .topNavBar {
   padding: 20px 0 20px 0;
   position: fixed;
@@ -87,7 +90,8 @@ hr {
   display: block;
   position: relative;
 }
-.topNavBar nav > ul > li.active > a::after {
+.topNavBar nav > ul > li.active > a::after,
+.topNavBar nav > ul > li.highLight > a::after {
   content: "";
   display: block;
   position: absolute;
@@ -137,7 +141,7 @@ hr {
 }
 .banner {
   height: 515px;
-  background: url(/rs-cover.7f93a6a4.jpg) center center no-repeat;
+  background: url(rs-cover.7f93a6a4.jpg) center center no-repeat;
   background-size: cover;
 }
 .banner .mask {
@@ -360,4 +364,4 @@ section.portfolio .works > .small {
 }
 
 
-/*# sourceMappingURL=/style.e308ff8e.css.map */
+/*# sourceMappingURL=style.e308ff8e.css.map */
