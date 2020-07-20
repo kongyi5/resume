@@ -128,11 +128,16 @@ portfolio2.onclick = function () {
 
 portfolio3.onclick = function () {
   portfolioBar.className = "bar state-3";
-};
+}; // 添加 offset 类
 
-setTimeout(function () {
-  siteWelcome.classList.remove("active");
-}, 3000);
+
+var specialTags = document.querySelectorAll("[data-x]");
+
+for (var i = 0; i < specialTags.length; i++) {
+  specialTags[i].classList.add("offset");
+}
+
+findClosest();
 
 window.onscroll = function () {
   if (window.scrollY > 0) {
@@ -141,36 +146,41 @@ window.onscroll = function () {
     topNavBar.classList.remove("sticky");
   }
 
+  findClosest();
+};
+
+function findClosest() {
   var specialTags = document.querySelectorAll("[data-x]");
   var minIndex = 0;
 
-  for (var i = 1; i < specialTags.length; i++) {
-    if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
-      minIndex = i;
+  for (var _i = 1; _i < specialTags.length; _i++) {
+    if (Math.abs(specialTags[_i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+      minIndex = _i;
     }
-  }
+  } // minIndex 就是离窗口顶部最近的元素
 
-  specialTags[minIndex].classList.add("highLight");
+
+  specialTags[minIndex].classList.remove("offset");
   var id = specialTags[minIndex].id;
   var a = document.querySelector('a[href="#' + id + '"]');
   var li = a.parentNode;
   var brotherAndMe = li.parentNode.children;
 
-  for (var _i = 0; _i < brotherAndMe.length; _i++) {
-    brotherAndMe[_i].classList.remove("highLight");
+  for (var _i2 = 0; _i2 < brotherAndMe.length; _i2++) {
+    brotherAndMe[_i2].classList.remove("highLight");
   }
 
   li.classList.add("highLight");
-};
+}
 
 var liTags = document.querySelectorAll("nav.menu > ul >li");
 
-for (var i = 0; i < liTags.length; i++) {
-  liTags[i].onmouseenter = function (x) {
+for (var _i3 = 0; _i3 < liTags.length; _i3++) {
+  liTags[_i3].onmouseenter = function (x) {
     x.currentTarget.classList.add("active");
   };
 
-  liTags[i].onmouseleave = function (x) {
+  liTags[_i3].onmouseleave = function (x) {
     x.currentTarget.classList.remove("active");
   };
 }
@@ -184,17 +194,16 @@ function animate(time) {
 
 requestAnimationFrame(animate);
 
-for (var _i2 = 0; _i2 < aTags.length; _i2++) {
-  aTags[_i2].onclick = function (x) {
+for (var _i4 = 0; _i4 < aTags.length; _i4++) {
+  aTags[_i4].onclick = function (x) {
     x.preventDefault(); // 阻止默认动作
 
     var a = x.currentTarget;
     var href = a.getAttribute("href"); // '#siteAbout'
 
-    var element = document.querySelector(href);
-    var top = element.offsetTop;
-
     if (href === "#") {} else {
+      var element = document.querySelector(href);
+      var top = element.offsetTop;
       var currentTop = window.scrollY;
       var targetTop = top - 80;
       var s = targetTop - currentTop;
@@ -243,7 +252,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53267" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52622" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -420,4 +429,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=main.1f19ae8e.js.map
+//# sourceMappingURL=/main.1f19ae8e.js.map

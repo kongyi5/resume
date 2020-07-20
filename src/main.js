@@ -8,9 +8,13 @@ portfolio3.onclick = function () {
   portfolioBar.className = "bar state-3";
 };
 
-setTimeout(() => {
-  siteWelcome.classList.remove("active");
-}, 3000);
+// 添加 offset 类
+let specialTags = document.querySelectorAll("[data-x]");
+for (let i = 0; i < specialTags.length; i++) {
+  specialTags[i].classList.add("offset");
+}
+
+findClosest();
 
 window.onscroll = () => {
   if (window.scrollY > 0) {
@@ -18,6 +22,10 @@ window.onscroll = () => {
   } else {
     topNavBar.classList.remove("sticky");
   }
+  findClosest();
+};
+
+function findClosest() {
   let specialTags = document.querySelectorAll("[data-x]");
   let minIndex = 0;
   for (let i = 1; i < specialTags.length; i++) {
@@ -28,7 +36,8 @@ window.onscroll = () => {
       minIndex = i;
     }
   }
-  specialTags[minIndex].classList.add("highLight");
+  // minIndex 就是离窗口顶部最近的元素
+  specialTags[minIndex].classList.remove("offset");
   let id = specialTags[minIndex].id;
   let a = document.querySelector('a[href="#' + id + '"]');
   let li = a.parentNode;
@@ -37,7 +46,7 @@ window.onscroll = () => {
     brotherAndMe[i].classList.remove("highLight");
   }
   li.classList.add("highLight");
-};
+}
 
 let liTags = document.querySelectorAll("nav.menu > ul >li");
 for (let i = 0; i < liTags.length; i++) {
@@ -62,10 +71,10 @@ for (let i = 0; i < aTags.length; i++) {
     x.preventDefault(); // 阻止默认动作
     let a = x.currentTarget;
     let href = a.getAttribute("href"); // '#siteAbout'
-    let element = document.querySelector(href);
-    let top = element.offsetTop;
     if (href === "#") {
     } else {
+      let element = document.querySelector(href);
+      let top = element.offsetTop;
       let currentTop = window.scrollY;
       let targetTop = top - 80;
       let s = targetTop - currentTop;
