@@ -117,82 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/init-swiper.js":[function(require,module,exports) {
-var mySwiper = new Swiper(".swiper-container", {
-  // Optional parameters
-  loop: true,
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination"
-  },
-  // Navigation arrows
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev"
-  },
-  // And if we need scrollbar
-  scrollbar: {
-    el: ".swiper-scrollbar"
-  }
-});
-},{}],"js/sticky-topBar.js":[function(require,module,exports) {
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 0) {
-    topNavBar.classList.add("sticky");
-  } else {
-    topNavBar.classList.remove("sticky");
-  }
-});
-},{}],"js/auto-slide-up.js":[function(require,module,exports) {
-// 添加 offset 类
-var specialTags = document.querySelectorAll("[data-x]");
-
-for (var i = 0; i < specialTags.length; i++) {
-  specialTags[i].classList.add("offset");
-}
-
-findClosestAndRemoveOffset();
-window.addEventListener("scroll", function () {
-  findClosestAndRemoveOffset();
-});
-/* helper */
-
-function findClosestAndRemoveOffset() {
-  var specialTags = document.querySelectorAll("[data-x]");
-  var minIndex = 0;
-
-  for (var _i = 1; _i < specialTags.length; _i++) {
-    if (Math.abs(specialTags[_i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
-      minIndex = _i;
-    }
-  } // minIndex 就是离窗口顶部最近的元素
-
-
-  specialTags[minIndex].classList.remove("offset");
-  var id = specialTags[minIndex].id;
-  var a = document.querySelector('a[href="#' + id + '"]');
-  var li = a.parentNode;
-  var brotherAndMe = li.parentNode.children;
-
-  for (var _i2 = 0; _i2 < brotherAndMe.length; _i2++) {
-    brotherAndMe[_i2].classList.remove("highLight");
-  }
-
-  li.classList.add("highLight");
-}
-
-var liTags = document.querySelectorAll("nav.menu > ul >li");
-
-for (var _i3 = 0; _i3 < liTags.length; _i3++) {
-  liTags[_i3].onmouseenter = function (x) {
-    x.currentTarget.classList.add("active");
-  };
-
-  liTags[_i3].onmouseleave = function (x) {
-    x.currentTarget.classList.remove("active");
-  };
-}
-},{}],"js/smoothly-navigation.js":[function(require,module,exports) {
+})({"js/smoothly-navigation.js":[function(require,module,exports) {
 var aTags = document.querySelectorAll("nav.menu > ul> li>a");
 
 function animate(time) {
@@ -232,17 +157,7 @@ for (var i = 0; i < aTags.length; i++) {
     }
   };
 }
-},{}],"main.js":[function(require,module,exports) {
-"use strict";
-
-require("./js/init-swiper.js");
-
-require("./js/sticky-topBar.js");
-
-require("./js/auto-slide-up.js");
-
-require("./js/smoothly-navigation.js");
-},{"./js/init-swiper.js":"js/init-swiper.js","./js/sticky-topBar.js":"js/sticky-topBar.js","./js/auto-slide-up.js":"js/auto-slide-up.js","./js/smoothly-navigation.js":"js/smoothly-navigation.js"}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -446,5 +361,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
-//# sourceMappingURL=/main.1f19ae8e.js.map
+},{}]},{},["../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","js/smoothly-navigation.js"], null)
+//# sourceMappingURL=/smoothly-navigation.b9a5310c.js.map
