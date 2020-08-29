@@ -148,7 +148,7 @@ hr {
 }
 .banner {
   height: 515px;
-  background: url(./img/rs-cover.jpg) center center no-repeat;
+  background: url(/rs-cover.7f93a6a4.jpg) center center no-repeat;
   background-size: cover;
 }
 .banner .mask {
@@ -349,3 +349,6 @@ section.portfolio .swiper-button-prev,
   left: 100%;
   right: auto;
 }
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

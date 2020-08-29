@@ -1,13 +1,3 @@
-portfolio1.onclick = function () {
-  portfolioBar.className = "bar state-1";
-};
-portfolio2.onclick = function () {
-  portfolioBar.className = "bar state-2";
-};
-portfolio3.onclick = function () {
-  portfolioBar.className = "bar state-3";
-};
-
 // 添加 offset 类
 let specialTags = document.querySelectorAll("[data-x]");
 for (let i = 0; i < specialTags.length; i++) {
