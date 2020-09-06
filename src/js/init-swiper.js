@@ -1,20 +1,22 @@
-const mySwiper = new Swiper(".swiper-container", {
-  // Optional parameters
-  loop: true,
+!function () {
+  const mySwiper = new Swiper(".swiper-container", {
+    // Optional parameters
+    loop: true,
 
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination",
-  },
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination",
+    },
 
-  // Navigation arrows
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
 
-  // And if we need scrollbar
-  scrollbar: {
-    el: ".swiper-scrollbar",
-  },
-});
+    // And if we need scrollbar
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
+  });
+}.call();

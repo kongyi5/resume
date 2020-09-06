@@ -118,120 +118,128 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/init-swiper.js":[function(require,module,exports) {
-var mySwiper = new Swiper(".swiper-container", {
-  // Optional parameters
-  loop: true,
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination"
-  },
-  // Navigation arrows
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev"
-  },
-  // And if we need scrollbar
-  scrollbar: {
-    el: ".swiper-scrollbar"
-  }
-});
+!function () {
+  var mySwiper = new Swiper(".swiper-container", {
+    // Optional parameters
+    loop: true,
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination"
+    },
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    // And if we need scrollbar
+    scrollbar: {
+      el: ".swiper-scrollbar"
+    }
+  });
+}.call();
 },{}],"js/sticky-topBar.js":[function(require,module,exports) {
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 0) {
-    topNavBar.classList.add("sticky");
-  } else {
-    topNavBar.classList.remove("sticky");
-  }
-});
+!function () {
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 0) {
+      topNavBar.classList.add("sticky");
+    } else {
+      topNavBar.classList.remove("sticky");
+    }
+  });
+}.call();
 },{}],"js/auto-slide-up.js":[function(require,module,exports) {
-// 添加 offset 类
-var specialTags = document.querySelectorAll("[data-x]");
-
-for (var i = 0; i < specialTags.length; i++) {
-  specialTags[i].classList.add("offset");
-}
-
-findClosestAndRemoveOffset();
-window.addEventListener("scroll", function () {
-  findClosestAndRemoveOffset();
-});
-/* helper */
-
-function findClosestAndRemoveOffset() {
+!function () {
+  // 添加 offset 类
   var specialTags = document.querySelectorAll("[data-x]");
-  var minIndex = 0;
 
-  for (var _i = 1; _i < specialTags.length; _i++) {
-    if (Math.abs(specialTags[_i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
-      minIndex = _i;
-    }
-  } // minIndex 就是离窗口顶部最近的元素
-
-
-  specialTags[minIndex].classList.remove("offset");
-  var id = specialTags[minIndex].id;
-  var a = document.querySelector('a[href="#' + id + '"]');
-  var li = a.parentNode;
-  var brotherAndMe = li.parentNode.children;
-
-  for (var _i2 = 0; _i2 < brotherAndMe.length; _i2++) {
-    brotherAndMe[_i2].classList.remove("highLight");
+  for (var i = 0; i < specialTags.length; i++) {
+    specialTags[i].classList.add("offset");
   }
 
-  li.classList.add("highLight");
-}
+  findClosestAndRemoveOffset();
+  window.addEventListener("scroll", function () {
+    findClosestAndRemoveOffset();
+  });
+  /* helper */
 
-var liTags = document.querySelectorAll("nav.menu > ul >li");
+  function findClosestAndRemoveOffset() {
+    var specialTags = document.querySelectorAll("[data-x]");
+    var minIndex = 0;
 
-for (var _i3 = 0; _i3 < liTags.length; _i3++) {
-  liTags[_i3].onmouseenter = function (x) {
-    x.currentTarget.classList.add("active");
-  };
-
-  liTags[_i3].onmouseleave = function (x) {
-    x.currentTarget.classList.remove("active");
-  };
-}
-},{}],"js/smoothly-navigation.js":[function(require,module,exports) {
-var aTags = document.querySelectorAll("nav.menu > ul> li>a");
-
-function animate(time) {
-  requestAnimationFrame(animate);
-  TWEEN.update(time);
-}
-
-requestAnimationFrame(animate);
-
-for (var i = 0; i < aTags.length; i++) {
-  aTags[i].onclick = function (x) {
-    x.preventDefault(); // 阻止默认动作
-
-    var a = x.currentTarget;
-    var href = a.getAttribute("href"); // '#siteAbout'
-
-    if (href === "#") {} else {
-      var element = document.querySelector(href);
-      var top = element.offsetTop;
-      var currentTop = window.scrollY;
-      var targetTop = top - 80;
-      var s = targetTop - currentTop;
-      var t = Math.abs(s / 100 * 300);
-
-      if (t > 500) {
-        t = 500;
+    for (var _i = 1; _i < specialTags.length; _i++) {
+      if (Math.abs(specialTags[_i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+        minIndex = _i;
       }
+    } // minIndex 就是离窗口顶部最近的元素
 
-      var coords = {
-        y: currentTop
-      };
-      var tween = new TWEEN.Tween(coords).to({
-        y: targetTop
-      }, t).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(function () {
-        window.scrollTo(0, coords.y);
-      }).start();
+
+    specialTags[minIndex].classList.remove("offset");
+    var id = specialTags[minIndex].id;
+    var a = document.querySelector('a[href="#' + id + '"]');
+    var li = a.parentNode;
+    var brotherAndMe = li.parentNode.children;
+
+    for (var _i2 = 0; _i2 < brotherAndMe.length; _i2++) {
+      brotherAndMe[_i2].classList.remove("highLight");
     }
-  };
-}
+
+    li.classList.add("highLight");
+  }
+
+  var liTags = document.querySelectorAll("nav.menu > ul >li");
+
+  for (var _i3 = 0; _i3 < liTags.length; _i3++) {
+    liTags[_i3].onmouseenter = function (x) {
+      x.currentTarget.classList.add("active");
+    };
+
+    liTags[_i3].onmouseleave = function (x) {
+      x.currentTarget.classList.remove("active");
+    };
+  }
+}.call();
+},{}],"js/smoothly-navigation.js":[function(require,module,exports) {
+!function () {
+  var aTags = document.querySelectorAll("nav.menu > ul> li>a");
+
+  function animate(time) {
+    requestAnimationFrame(animate);
+    TWEEN.update(time);
+  }
+
+  requestAnimationFrame(animate);
+
+  for (var i = 0; i < aTags.length; i++) {
+    aTags[i].onclick = function (x) {
+      x.preventDefault(); // 阻止默认动作
+
+      var a = x.currentTarget;
+      var href = a.getAttribute("href"); // '#siteAbout'
+
+      if (href === "#") {} else {
+        var element = document.querySelector(href);
+        var top = element.offsetTop;
+        var currentTop = window.scrollY;
+        var targetTop = top - 80;
+        var s = targetTop - currentTop;
+        var t = Math.abs(s / 100 * 300);
+
+        if (t > 500) {
+          t = 500;
+        }
+
+        var coords = {
+          y: currentTop
+        };
+        var tween = new TWEEN.Tween(coords).to({
+          y: targetTop
+        }, t).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(function () {
+          window.scrollTo(0, coords.y);
+        }).start();
+      }
+    };
+  }
+}.call();
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
@@ -270,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52063" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
