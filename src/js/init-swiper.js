@@ -1,22 +1,31 @@
 !function () {
-  const mySwiper = new Swiper(".swiper-container", {
-    // Optional parameters
-    loop: true,
-
-    // If we need pagination
-    pagination: {
-      el: ".swiper-pagination",
+  const view = document.querySelector("#mySlides");
+  const controller = {
+    view: null,
+    swiper: null,
+    swiperOptions: {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
     },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+    init: function (view) {
+      this.view = view;
+      this.initSwiper();
     },
-
-    // And if we need scrollbar
-    scrollbar: {
-      el: ".swiper-scrollbar",
+    initSwiper: function () {
+      this.swiper = new Swiper(
+        this.view.querySelector(".swiper-container"),
+        this.swiperOptions
+      );
     },
-  });
+  };
+  controller.init(view);
 }.call();
