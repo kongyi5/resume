@@ -290,47 +290,94 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   controller.init(view);
 }.call();
 },{}],"XHdR":[function(require,module,exports) {
-AV.init({
-  appId: "6QEhBTOEUrHYTwQvuKyrn0rT-gzGzoHsz",
-  appKey: "BmT8ng5MmIRlQvDltuvys8Ro",
-  serverURL: "https://6qehbtoe.lc-cn-n1-shared.com"
-}); // 示例代码
-// let x = AV.Object.extend("jerry");
-// let o = new x();
-// o.save().then((o) => {
-//   console.log("保存成功。");
-// });
+!function () {
+  var model = {
+    init: function init() {
+      AV.init({
+        appId: "6QEhBTOEUrHYTwQvuKyrn0rT-gzGzoHsz",
+        appKey: "BmT8ng5MmIRlQvDltuvys8Ro",
+        serverURL: "https://6qehbtoe.lc-cn-n1-shared.com"
+      });
+    },
+    // 获取数据
+    fetch: function fetch() {
+      var query = new AV.Query("message");
+      return query.find(); // Promise 对象
+    },
+    // 创建数据
+    save: function save(name, content) {
+      var Message = AV.Object.extend("message"); //连接对应数据库名字
 
-var query = new AV.Query("message");
-query.find().then(function (messages) {
-  var array = messages.map(function (item) {
-    return item.attributes;
-  });
-  array.forEach(function (item) {
-    var li = document.createElement("li");
-    li.innerText = "".concat(item.name, ": ").concat(item.content);
-    var messageList = document.querySelector("#messageList");
-    messageList.appendChild(li);
-  });
-});
-var myForm = document.querySelector("#postMessageForm");
-myForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  var name = myForm.querySelector("input[name=name]").value;
-  var content = myForm.querySelector("input[name=content]").value;
-  var Message = AV.Object.extend("message");
-  var message = new Message();
-  message.save({
-    name: name,
-    content: content
-  }).then(function (object) {
-    var li = document.createElement("li");
-    li.innerText = "".concat(object.attributes.name, ": ").concat(object.attributes.content);
-    var messageList = document.querySelector("#messageList");
-    myForm.querySelector("input[name=content]").value = "";
-    messageList.appendChild(li);
-  });
-});
+      var message = new Message();
+      return message.save({
+        //要存的信息
+        name: name,
+        content: content
+      });
+    }
+  };
+  var view = document.querySelector("section.message");
+  var controller = {
+    view: null,
+    model: null,
+    messageList: null,
+    init: function init(view, model) {
+      this.view = view;
+      this.model = model;
+      this.messageList = view.querySelector("#messageList");
+      this.form = view.querySelector("#postMessageForm");
+      this.model.init();
+      this.bindEvents();
+      this.loadMessages();
+    },
+    loadMessages: function loadMessages() {
+      var _this = this;
+
+      this.model.fetch().then(function (messages) {
+        var array = messages.map(function (item) {
+          return item.attributes;
+        });
+        array.forEach(function (item) {
+          var li = document.createElement("li");
+          li.innerText = "".concat(item.name, ": ").concat(item.content);
+
+          _this.messageList.appendChild(li);
+        });
+      });
+    },
+    bindEvents: function bindEvents() {
+      var _this2 = this;
+
+      this.form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        _this2.saveMessage();
+      });
+    },
+    saveMessage: function saveMessage() {
+      var _this3 = this;
+
+      console.log(1);
+      var myForm = this.form;
+      var name = myForm.querySelector("input[name=name]").value;
+      var content = myForm.querySelector("input[name=content]").value;
+      console.log(2);
+      this.model.save(name, content).then(function (object) {
+        console.log(3);
+        var li = document.createElement("li");
+        li.innerText = "".concat(object.attributes.name, ": ").concat(object.attributes.content);
+
+        _this3.messageList.appendChild(li);
+
+        myForm.querySelector("input[name=content]").value = "";
+        console.log(object);
+      }, function (error) {
+        return console.log(error);
+      });
+    }
+  };
+  controller.init(view, model);
+}.call();
 },{}],"epB2":[function(require,module,exports) {
 "use strict";
 
@@ -344,4 +391,4 @@ require("./js/smoothly-navigation.js");
 
 require("./js/message.js");
 },{"./js/init-swiper.js":"KiMm","./js/sticky-topBar.js":"ZpGb","./js/auto-slide-up.js":"fXTw","./js/smoothly-navigation.js":"uX9r","./js/message.js":"XHdR"}]},{},["epB2"], null)
-//# sourceMappingURL=main.b89a0e9f.js.map
+//# sourceMappingURL=main.3260fd7c.js.map
