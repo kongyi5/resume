@@ -58,24 +58,27 @@
       });
     },
     saveMessage: function () {
-      console.log(1);
       let myForm = this.form;
       let name = myForm.querySelector("input[name=name]").value;
       let content = myForm.querySelector("input[name=content]").value;
-      console.log(2);
-      this.model.save(name, content).then(
-        (object) => {
-          console.log(3);
-          let li = document.createElement("li");
-          li.innerText = `${object.attributes.name}: ${object.attributes.content}`;
-          this.messageList.appendChild(li);
-          myForm.querySelector("input[name=content]").value = "";
-          console.log(object);
-        },
-        (error) => console.log(error)
-      );
+      if (name === "" && content === "") {
+        alert("你是谁？想说啥？");
+      } else if (name === "") {
+        alert("你是谁？");
+      } else if (content === "") {
+        alert("想说啥？");
+      } else {
+        this.model.save(name, content).then(
+          (object) => {
+            let li = document.createElement("li");
+            li.innerText = `${object.attributes.name}: ${object.attributes.content}`;
+            this.messageList.appendChild(li);
+            myForm.querySelector("input[name=content]").value = "";
+          },
+          (error) => console.log(error)
+        );
+      }
     },
   };
-
   controller.init(view, model);
 }.call();

@@ -357,23 +357,28 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     saveMessage: function saveMessage() {
       var _this3 = this;
 
-      console.log(1);
       var myForm = this.form;
       var name = myForm.querySelector("input[name=name]").value;
       var content = myForm.querySelector("input[name=content]").value;
-      console.log(2);
-      this.model.save(name, content).then(function (object) {
-        console.log(3);
-        var li = document.createElement("li");
-        li.innerText = "".concat(object.attributes.name, ": ").concat(object.attributes.content);
 
-        _this3.messageList.appendChild(li);
+      if (name === "" && content === "") {
+        alert("你是谁？想说啥？");
+      } else if (name === "") {
+        alert("你是谁？");
+      } else if (content === "") {
+        alert("想说啥？");
+      } else {
+        this.model.save(name, content).then(function (object) {
+          var li = document.createElement("li");
+          li.innerText = "".concat(object.attributes.name, ": ").concat(object.attributes.content);
 
-        myForm.querySelector("input[name=content]").value = "";
-        console.log(object);
-      }, function (error) {
-        return console.log(error);
-      });
+          _this3.messageList.appendChild(li);
+
+          myForm.querySelector("input[name=content]").value = "";
+        }, function (error) {
+          return console.log(error);
+        });
+      }
     }
   };
   controller.init(view, model);
@@ -391,4 +396,4 @@ require("./js/smoothly-navigation.js");
 
 require("./js/message.js");
 },{"./js/init-swiper.js":"KiMm","./js/sticky-topBar.js":"ZpGb","./js/auto-slide-up.js":"fXTw","./js/smoothly-navigation.js":"uX9r","./js/message.js":"XHdR"}]},{},["epB2"], null)
-//# sourceMappingURL=main.3260fd7c.js.map
+//# sourceMappingURL=main.d0ab63ff.js.map
